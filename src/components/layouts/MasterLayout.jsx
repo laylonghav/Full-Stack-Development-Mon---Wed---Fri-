@@ -1,8 +1,10 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
 import "./style.css";
+import { useSelector } from "react-redux";
 
 const MasterLayout = () => {
+  const counter = useSelector((state) => state.counter.value);
   return (
     <div>
       <header
@@ -40,6 +42,7 @@ const MasterLayout = () => {
             <div className="">Teacher</div>
           </div>
         </div>
+        <h1>{counter}</h1>
         <nav style={{ display: "flex", gap: "2rem" }}>
           <NavLink
             className={({ isActive }) => (isActive ? "isActive" : "Inactive")}

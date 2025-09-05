@@ -5,6 +5,8 @@ import ProfilePage from "./pages/profile/ProfilePage";
 import NotFoundPage from "./pages/404/NotFoundPage";
 import ProductDetailPage from "./pages/product/ProductDetailPage";
 import MasterLayout from "./components/layouts/MasterLayout";
+import AuthLayout from "./components/layouts/AuthLayout";
+import LoginPage from "./pages/auth/LoginPage";
 
 export default function App() {
   return (
@@ -16,6 +18,9 @@ export default function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
           <Route path="*" element={<NotFoundPage />} />
+        </Route>
+        <Route path="auth" element={<AuthLayout />}>
+          <Route path="login" element={<LoginPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

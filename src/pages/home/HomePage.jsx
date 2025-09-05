@@ -2,12 +2,20 @@ import { useEffect, useState } from "react";
 import MasterLayout from "../../components/layouts/MasterLayout";
 import Card from "../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/userSlice";
 
 export default function HomePage() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
+
+  if (!user || !user.username) {
+    navigate("/auth/login");
+  }
 
   useEffect(() => {
     const fetchingData = async () => {
@@ -33,6 +41,9 @@ export default function HomePage() {
   };
   return (
     <div>
+      <h1>{user?.username}</h1>
+
+      <button onClick={() => dispatch(logout())}>Logout</button>
       <p>Home Page</p>
 
       <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
