@@ -1,21 +1,56 @@
-import styles from "./style.module.css";
+import styles from "./Style.module.css";
 
-function Card({ name, price, description, image, qty, btnAddToCart }) {
+const Card = ({
+  loading,
+  title,
+  description,
+  price,
+  images,
+  rating,
+  availabilityStatus,
+  stock,
+  onAddToCard,
+  onCardClick,
+}) => {
   return (
-    <div className={styles.CardContainer}>
-      {image && (
-        <div className={styles.imageProduct}>
-          <img className={styles.img} src={image} alt={`pic ${image}`} />
-        </div>
-      )}
-      <h3 className={styles.name}>{name}</h3>
-      <p className={styles.description}>{description}</p>
-      <div className={styles.bottonRow}>
-        <div className={styles.price}>${price}</div>
-        <div className={styles.qty}>{qty}</div>
+    <div>
+      <div className="">
+        {loading ? (
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+            <div onClick={onCardClick} className={styles.container}>
+              {images && (
+                <div className={styles.productImage}>
+                  <img
+                    className={styles.Image}
+                    src={images}
+                    alt={`pic ${title}`}
+                  />
+                </div>
+              )}
+
+              <h3 className={styles.title}>{title}</h3>
+              <p className={styles.description}>{description}</p>
+              <div className={styles.bodycard}>
+                <p className={styles.price}>{price}</p>|
+                <p className={styles.rating}>{rating}</p>|
+                <p className={styles.availabilityStatus}>
+                  {availabilityStatus}
+                </p>
+                |<p className={styles.stock}>{stock}</p>
+              </div>
+              <button className={styles.onAddToCard} onClick={onAddToCard}>
+                Detail
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <h3>relaod data..........</h3>
+          </div>
+        )}
       </div>
-      <button className={styles.btn} onClick={btnAddToCart}>Add to cart</button>
     </div>
   );
-}
+};
+
 export default Card;
