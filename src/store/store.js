@@ -20,4 +20,6 @@ const persistedReduc = persistReducer(configPersist, rootReduc);
 export const store = configureStore({
   reducer: persistedReduc,
 });
+
+
 export const persistor = persistStore(store);

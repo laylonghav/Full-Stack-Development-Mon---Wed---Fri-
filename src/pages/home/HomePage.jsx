@@ -13,9 +13,9 @@ export default function HomePage() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
 
-  if (!user || !user.username) {
-    navigate("/auth/login");
-  }
+  // if (!user || !user.username) {
+  //   navigate("/auth/login");
+  // }
 
   useEffect(() => {
     const fetchingData = async () => {
@@ -44,7 +44,7 @@ export default function HomePage() {
       <h1>{user?.username}</h1>
 
       <button onClick={() => dispatch(logout())}>Logout</button>
-      <p>Home Page</p>
+      <p className="text-red-600">Home Page</p>
 
       <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
         {product.map((item, index) => {
